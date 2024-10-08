@@ -7,12 +7,21 @@ const images = [
     },
     {
         src: 'gt3.jpg',
+        price: '$25.00',
+        description: 'This item is even better!'
     },
+    {
+        src: 'gt4.jpg',
+        price: '$30.00',
+        description: 'You will love this one!'
+    }
 ];
 
 function updateImage() {
     const currentImage = images[currentIndex];
     document.getElementById('current').src = currentImage.src;
+    document.getElementById('price').innerText = currentImage.price;
+    document.getElementById('description').innerText = currentImage.description;
 }
 
 function nextImage() {
@@ -25,7 +34,7 @@ function prevImage() {
     updateImage();
 }
 
-function changeImage(src, price, description) {
+function changeImage(src) {
     currentIndex = images.findIndex(img => img.src === src);
     updateImage();
 }

@@ -1,48 +1,75 @@
-<!-- item.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Item Page</title>
-    <style>
-        /* Add your styles here */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        .item-container {
-            max-width: 600px;
-            margin: auto;
-        }
-        .item-image {
-            max-width: 100%;
-            height: auto;
-        }
-    </style>
+    <title>Item Details</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
 </head>
 <body>
-    <div class="item-container">
-        <h2 id="itemTitle"></h2>
-        <img id="itemImage" class="item-image" src="" alt="">
-        <div id="itemPrice"></div>
-        <button onclick="goBack()">Back to Available Items</button>
+
+<div class="slider">
+    <div class="main-image">
+        <img id="current" src="" alt="Main Image">
+        <div class="arrows">
+            <span class="arrow left" onclick="prevImage()">&#10094;</span>
+            <span class="arrow right" onclick="nextImage()">&#10095;</span>
+        </div>
     </div>
+    <div class="thumbnails" id="thumbnails"></div>
+    <div class="info">
+        <div class="price" id="price"></div>
+        <div class="description" id="description"></div>
+    </div>
+    <button onclick="window.location.href='mailto:sparklecrochet8@gmail.com';">Contact for Purchase</button>
+</div>
 
-    <script>
-        function goBack() {
-            window.close(); // Closes the current tab
-        }
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const title = urlParams.get('title');
+    const price = urlParams.get('price');
+    const description = urlParams.get('description');
+    const images = JSON.parse(urlParams.get('images'));
 
-        // Get item data from local storage
-        const itemTitle = localStorage.getItem('itemTitle');
-        const itemImage = localStorage.getItem('itemImage');
-        const itemPrice = localStorage.getItem('itemPrice');
+    document.title = title; // Set the page title
 
-        // Display item data
-        document.getElementById('itemTitle').innerText = itemTitle;
-        document.getElementById('itemImage').src = itemImage;
-        document.getElementById('itemPrice').innerText = itemPrice;
-    </script>
+    document.getElementById('price').innerText = price;
+    document.getElementById('description').innerText = description;
+
+    const currentImage = document.getElementById('current');
+    const thumbnailsContainer = document.getElementById('thumbnails');
+
+    let currentIndex = 0;
+
+    function showImage(index) {
+        currentImage.src = images[index];
+    }
+
+    function nextImage() {
+        currentIndex = (currentIndex + 1) % images.length;
+        showImage(currentIndex);
+    }
+
+    function prevImage() {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        showImage(currentIndex);
+    }
+
+    // Create thumbnails
+    images.forEach(image => {
+        const thumbnail = document.createElement('img');
+        thumbnail.src = image;
+        thumbnail.alt = 'Thumbnail';
+        thumbnail.onclick = function() {
+            currentIndex = images.indexOf(image);
+            showImage(currentIndex);
+        };
+        thumbnailsContainer.appendChild(thumbnail);
+    });
+
+    // Show the first image by default
+    showImage(currentIndex);
+</script>
+
 </body>
 </html>

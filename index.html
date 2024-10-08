@@ -75,6 +75,14 @@
             alert("Incorrect password!");
         }
     }
+            function addItemToContainer(title, price, description, images) {
+        const itemLink = document.createElement('a');
+        itemLink.href = `item.html?title=${encodeURIComponent(title)}&price=${encodeURIComponent(price)}&description=${encodeURIComponent(description)}&images=${encodeURIComponent(JSON.stringify(images))}`;
+        itemLink.target = "_blank";
+        itemLink.innerText = title;
+        itemLink.style.display = 'block'; // Make it a block element
+        document.getElementById('items-container').appendChild(itemLink);
+    }
 </script>
 
 </header>

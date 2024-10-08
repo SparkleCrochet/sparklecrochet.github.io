@@ -41,14 +41,21 @@
 
         if (title && fileInput.files.length > 0 && price && description && status) {
             const images = [];
+            let filesProcessed = 0;
 
             Array.from(fileInput.files).forEach(file => {
                 const reader = new FileReader();
                 reader.onload = function(event) {
                     images.push(event.target.result);
+                    filesProcessed++;
 
-                    // When all images are processed, add to main page
-                    if (images.length === fileInput.files.length) {
+                    // When all images are processed, save to localStorage and main page
+                    if (filesProcessed === fileInput.files.length) {
+                        const newItem = { title, price, description, images, status };
+                        const items = JSON.parse(localStorage.getItem('items')) || [];
+                        items.push(newItem);
+                        localStorage.setItem('items', JSON.stringify(items));
+
                         window.opener.addItemToContainer(title, price, description, images, status);
                         alert("Item added successfully!");
                         window.close(); // Close the add item window

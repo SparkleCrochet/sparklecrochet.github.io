@@ -1,0 +1,48 @@
+<!-- item.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item Page</title>
+    <style>
+        /* Add your styles here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .item-container {
+            max-width: 600px;
+            margin: auto;
+        }
+        .item-image {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="item-container">
+        <h2 id="itemTitle"></h2>
+        <img id="itemImage" class="item-image" src="" alt="">
+        <div id="itemPrice"></div>
+        <button onclick="goBack()">Back to Available Items</button>
+    </div>
+
+    <script>
+        function goBack() {
+            window.close(); // Closes the current tab
+        }
+
+        // Get item data from local storage
+        const itemTitle = localStorage.getItem('itemTitle');
+        const itemImage = localStorage.getItem('itemImage');
+        const itemPrice = localStorage.getItem('itemPrice');
+
+        // Display item data
+        document.getElementById('itemTitle').innerText = itemTitle;
+        document.getElementById('itemImage').src = itemImage;
+        document.getElementById('itemPrice').innerText = itemPrice;
+    </script>
+</body>
+</html>

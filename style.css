@@ -74,3 +74,30 @@ footer {
             background-color: #102C57;
             color: white;
         }
+
+#admin-area {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .add-item-form input, .add-item-form select {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .add-item-form button {
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .add-item-form button:hover {
+            background-color: #0056b3;
+        }

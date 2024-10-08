@@ -34,3 +34,40 @@ function addItem() {
         alert("Please fill in all fields.");
     }
 }
+
+function addItem() {
+    const title = document.getElementById('itemTitle').value;
+    const price = document.getElementById('itemPrice').value;
+    const description = document.getElementById('itemDescription').value;
+    const fileInput = document.getElementById('itemImage');
+
+    if (title && fileInput.files.length > 0 && price && description) {
+        const images = []; // Array to hold image URLs
+
+        Array.from(fileInput.files).forEach(file => {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                images.push(event.target.result);
+                if (images.length === fileInput.files.length) {
+                    // Create a link to the new item page
+                    const itemLink = document.createElement('a');
+                    itemLink.href = `item.html?title=${encodeURIComponent(title)}&price=${encodeURIComponent(price)}&description=${encodeURIComponent(description)}&images=${encodeURIComponent(JSON.stringify(images))}`;
+                    itemLink.target = "_blank"; // Open in a new tab
+                    itemLink.innerText = title; // Display the title
+                    document.getElementById('items-container').appendChild(itemLink); // Append link to items container
+                    itemLink.style.display = 'block'; // Make it a block element for better appearance
+
+                    // Clear input fields
+                    document.getElementById('itemTitle').value = '';
+                    document.getElementById('itemImage').value = '';
+                    document.getElementById('itemPrice').value = '';
+                    document.getElementById('itemDescription').value = '';
+                }
+            };
+            reader.readAsDataURL(file);
+        });
+    } else {
+        alert("Please fill in all fields.");
+    }
+}
+

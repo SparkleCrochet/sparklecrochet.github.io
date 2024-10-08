@@ -1,74 +1,36 @@
 function addItem() {
     const title = document.getElementById('itemTitle').value;
-    const image = document.getElementById('itemImage').value;
+    const fileInput = document.getElementById('itemImage');
     const price = document.getElementById('itemPrice').value;
     const status = document.getElementById('itemStatus').value;
 
-    if (title && image && price && status) {
-        const itemContainer = document.createElement('div');
-        itemContainer.className = 'item';
+    if (title && fileInput.files.length > 0 && price && status) {
+        const file = fileInput.files[0];
+        const reader = new FileReader();
 
-        itemContainer.innerHTML = `
-            <h2>${title}</h2>
-            <img src="${image}" alt="${title}">
-            <div class="price">${price}</div>
-        `;
+        reader.onload = function(event) {
+            const imageUrl = event.target.result; // The base64 encoded image data
+            const itemContainer = document.createElement('div');
+            itemContainer.className = 'item';
+            itemContainer.innerHTML = `
+                <h2>${title}</h2>
+                <img src="${imageUrl}" alt="${title}" style="max-width: 100%; height: auto;">
+                <div class="price">${price}</div>
+            `;
 
-        // Append to the appropriate section
-        if (status === 'available') {
-            document.querySelector('#available-items').appendChild(itemContainer);
-        } else if (status === 'sold') {
-            document.querySelector('#sold-items').appendChild(itemContainer);
-        }
+            // Append to the appropriate section based on status
+            const targetContainer = status === 'available' ? document.getElementById('available-items') : document.getElementById('sold-items');
+            targetContainer.appendChild(itemContainer);
 
-        // Clear the input fields
-        document.getElementById('itemTitle').value = '';
-        document.getElementById('itemImage').value = '';
-        document.getElementById('itemPrice').value = '';
-        document.getElementById('itemStatus').value = '';
+            // Clear input fields
+            document.getElementById('itemTitle').value = '';
+            document.getElementById('itemImage').value = '';
+            document.getElementById('itemPrice').value = '';
+            document.getElementById('itemStatus').value = '';
+        };
+
+        reader.readAsDataURL(file); // Read the image file as a data URL
     } else {
         alert("Please fill in all fields.");
     }
 }
-
-        const correctPassword = "yourpassword"; // Set your password here
-
-        function showAdminArea() {
-            const password = prompt("Enter password:");
-            if (password === correctPassword) {
-                document.getElementById('admin-area').style.display = 'block';
-            } else {
-                alert("Incorrect password!");
-            }
-        }
-
-        function addItem() {
-            const title = document.getElementById('itemTitle').value;
-            const image = document.getElementById('itemImage').value;
-            const price = document.getElementById('itemPrice').value;
-            const status = document.getElementById('itemStatus').value;
-
-            if (title && image && price && status) {
-                const itemContainer = document.createElement('div');
-                itemContainer.className = 'item';
-                itemContainer.innerHTML = `
-                    <h2>${title}</h2>
-                    <img src="${image}" alt="${title}" style="max-width: 100%; height: auto;">
-                    <div class="price">${price}</div>
-                `;
-
-                // Append to the appropriate section based on status
-                const targetContainer = status === 'available' ? document.getElementById('available-items') : document.getElementById('sold-items');
-                targetContainer.appendChild(itemContainer);
-
-                // Clear input fields
-                document.getElementById('itemTitle').value = '';
-                document.getElementById('itemImage').value = '';
-                document.getElementById('itemPrice').value = '';
-                document.getElementById('itemStatus').value = '';
-            } else {
-                alert("Please fill in all fields.");
-            }
-        }
-
-        showAdminArea(); // Call this function to prompt for password on page load

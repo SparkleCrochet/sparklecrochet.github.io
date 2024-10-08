@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<!-- saved from url=(0053)file:///C:/Users/pcuser/Desktop/web/amigurumi_rc.html -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amigurumi Cow - Sparkle Crochet</title>
+    <title>Crochet Cow</title>
+    
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -44,37 +45,33 @@
             color: white;
         }
     </style>
-    <script>
-        function changeImage(imageSrc) {
-            document.getElementById("mainImage").src = imageSrc;
-        }
-    </script>
+    <link rel="stylesheet" href="style1.css"> <!-- Link to your CSS file -->
 </head>
 <body>
 
-<header>
-    <h1>Amigurumi Cow</h1>
-</header>
-
-<div class="container">
-    <img id="mainImage" src="./Amigurumi Cow - Sparkle Crochet_files/rc1.jpg" alt="Amigurumi Cow">
-    <h2>Description</h2>
-    <p>This adorable amigurumi cow is handmade with love, using high-quality yarn.</p>
-    <h3>Sold</h3>
-    
-    <h4>More Images:</h4>
-    <div>
-        <img class="thumbnail" src="./Amigurumi Cow - Sparkle Crochet_files/rc1.jpg" alt="Amigurumi Cow 1" onclick="changeImage(&#39;rc1.jpg&#39;)">
-        <img class="thumbnail" src="./Amigurumi Cow - Sparkle Crochet_files/rc2.jpg" alt="Amigurumi Cow 2" onclick="changeImage(&#39;rc2.jpg&#39;)">
+<div class="slider">
+    <div class="info">
+        <div class="price" id="price">Sold</div>
+        <div class="description" id="description">This is a great crochet item!</div>
     </div>
-
-    <button onclick="window.location.href=&#39;mailto:sparklecrochet8@gmail.com&#39;;">Contact for Purchase</button>
+    <div class="main-image">
+        <img id="current" src="rc1.jpg" alt="Main Image">
+        <div class="arrows">
+            <span class="arrow left" onclick="prevImage()">&#10094;</span>
+            <span class="arrow right" onclick="nextImage()">&#10095;</span>
+        </div>
+    </div>
+    <div class="thumbnails">
+        <img src="rc1.jpg" alt="Thumbnail" onclick="changeImage('rc1.jpg')">
+        <img src="rc2.jpg" alt="Thumbnail" onclick="changeImage('rc2.jpg')">
+    </div>
+     <button onclick="window.location.href='mailto:sparklecrochet8@gmail.com';">Contact for Purchase</button>
 </div>
-
-<footer>
-    <p>© 2024 Sparkle Crochet. All rights reserved.</p>
-</footer>
-
+    <footer>
+        <p>© 2024 Sparkle Crochet. All rights reserved.</p>
+    </footer>
 
 
-</body></html>
+<script src="script1.js"></script> <!-- Link to your JavaScript file -->
+</body>
+</html>

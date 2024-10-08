@@ -101,3 +101,17 @@ footer {
         .add-item-form button:hover {
             background-color: #0056b3;
         }
+/* Styles for the admin area */
+#admin-area {
+    color: black; /* Set text color to black */
+}
+
+#admin-area input, 
+#admin-area button {
+    color: black; /* Set input and button text color to black */
+}
+
+#admin-area input::placeholder {
+    color: gray; /* Optional: Set placeholder text color */
+}
+

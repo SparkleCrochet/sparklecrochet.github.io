@@ -1,27 +1,17 @@
-let currentIndex = 0;
+const price = "$20.00";
+const description = "This is a great crochet item!";
 const images = [
-    {
-        src: 'gt2.jpg',
-        price: '$20.00',
-        description: 'This is a great crochet item!'
-    },
-    {
-        src: 'gt3.jpg',
-        price: '$25.00',
-        description: 'This item is even better!'
-    },
-    {
-        src: 'gt4.jpg',
-        price: '$30.00',
-        description: 'You will love this one!'
-    }
+    'gt2.jpg',
+    'gt3.jpg',
+    'gt4.jpg'
 ];
 
+let currentIndex = 0;
+
 function updateImage() {
-    const currentImage = images[currentIndex];
-    document.getElementById('current').src = currentImage.src;
-    document.getElementById('price').innerText = currentImage.price;
-    document.getElementById('description').innerText = currentImage.description;
+    document.getElementById('current').src = images[currentIndex];
+    document.getElementById('price').innerText = price;
+    document.getElementById('description').innerText = description;
 }
 
 function nextImage() {
@@ -35,6 +25,14 @@ function prevImage() {
 }
 
 function changeImage(src) {
-    currentIndex = images.findIndex(img => img.src === src);
+    currentIndex = images.indexOf(src);
     updateImage();
 }
+
+// Open contact page or function
+document.getElementById('contact-btn').onclick = function() {
+    window.open('mailto:your-email@example.com');
+};
+
+// Initialize the first image on load
+window.onload = updateImage;

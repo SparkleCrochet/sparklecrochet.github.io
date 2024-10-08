@@ -17,14 +17,17 @@
 </head>
 <body>
 
-<div id="admin-area">
-    <h2>Add New Item</h2>
-    <input type="text" id="itemTitle" placeholder="Item Title" required>
-    <input type="file" id="itemImage" accept="image/*" multiple required>
-    <input type="text" id="itemPrice" placeholder="Price" required>
-    <input type="text" id="itemDescription" placeholder="Description" required>
-    <button onclick="addItem()">Add Item</button>
-</div>
+<h2>Add New Item</h2>
+<input type="text" id="itemTitle" placeholder="Item Title" required>
+<input type="file" id="itemImage" accept="image/*" multiple required>
+<input type="text" id="itemPrice" placeholder="Price" required>
+<input type="text" id="itemDescription" placeholder="Description" required>
+<select id="itemStatus" required>
+    <option value="">Select Status</option>
+    <option value="available">Available</option>
+    <option value="sold">Sold</option>
+</select>
+<button onclick="addItem()">Add Item</button>
 
 <script>
     const correctPassword = "SparkleCrochet"; // Set your password here
@@ -33,23 +36,22 @@
         const title = document.getElementById('itemTitle').value;
         const price = document.getElementById('itemPrice').value;
         const description = document.getElementById('itemDescription').value;
+        const status = document.getElementById('itemStatus').value;
         const fileInput = document.getElementById('itemImage');
 
-        if (title && fileInput.files.length > 0 && price && description) {
+        if (title && fileInput.files.length > 0 && price && description && status) {
             const images = [];
 
             Array.from(fileInput.files).forEach(file => {
                 const reader = new FileReader();
                 reader.onload = function(event) {
                     images.push(event.target.result);
+
+                    // When all images are processed, add to main page
                     if (images.length === fileInput.files.length) {
-                        // Create a link to the new item page
-                        const itemLink = document.createElement('a');
-                        itemLink.href = `item.html?title=${encodeURIComponent(title)}&price=${encodeURIComponent(price)}&description=${encodeURIComponent(description)}&images=${encodeURIComponent(JSON.stringify(images))}`;
-                        itemLink.target = "_blank";
-                        itemLink.innerText = title;
-                        itemLink.style.display = 'block';
-                        document.getElementById('items-container').appendChild(itemLink);
+                        window.opener.addItemToContainer(title, price, description, images, status);
+                        alert("Item added successfully!");
+                        window.close(); // Close the add item window
                     }
                 };
                 reader.readAsDataURL(file);

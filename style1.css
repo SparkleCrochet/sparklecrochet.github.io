@@ -1,3 +1,15 @@
+.main-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.main-image img {
+    max-width: 100%; /* Ensures the image is responsive */
+    height: auto;    /* Maintains the aspect ratio */
+}
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;

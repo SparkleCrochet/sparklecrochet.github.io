@@ -64,8 +64,8 @@
         <a href="#contact">Contact</a>
     </nav>
         <button onclick="openAddItemWindow()">Add Item</button> <!-- Button to open new window -->
-    <script>
-        const correctPassword = "SparkleCrochet"; // Set your password here
+   <script>
+    const correctPassword = "SparkleCrochet"; // Set your password here
 
     function openAddItemWindow() {
         const password = prompt("Enter password:");
@@ -75,16 +75,34 @@
             alert("Incorrect password!");
         }
     }
-            function addItemToContainer(title, price, description, images) {
+
+    function addItemToContainer(title, price, description, images, status) {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = "item";
+        
         const itemLink = document.createElement('a');
         itemLink.href = `item.html?title=${encodeURIComponent(title)}&price=${encodeURIComponent(price)}&description=${encodeURIComponent(description)}&images=${encodeURIComponent(JSON.stringify(images))}`;
         itemLink.target = "_blank";
         itemLink.innerText = title;
-        itemLink.style.display = 'block'; // Make it a block element
-        document.getElementById('items-container').appendChild(itemLink);
+        itemLink.style.display = 'block';
+
+        const itemPrice = document.createElement('div');
+        itemPrice.innerText = `Price: ${price}`;
+        
+        const itemStatus = document.createElement('div');
+        itemStatus.innerText = `Status: ${status}`;
+
+        itemDiv.appendChild(itemLink);
+        itemDiv.appendChild(itemPrice);
+        itemDiv.appendChild(itemStatus);
+
+        if (status === "available") {
+            document.getElementById('available-items').appendChild(itemDiv);
+        } else {
+            document.getElementById('sold-items').appendChild(itemDiv);
+        }
     }
 </script>
-
 </header>
 
 <section id="available">

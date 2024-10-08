@@ -45,7 +45,7 @@ body {
 }
 
 .main-image {
-    position: relative;
+    position: center;
 }
 
 .main-image img {

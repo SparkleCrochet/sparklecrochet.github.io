@@ -8,6 +8,22 @@ body {
     margin: auto;
 }
 
+.price-description {
+    text-align: left;
+    padding: 10px;
+}
+
+.price {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333;
+}
+
+.description {
+    margin-top: 5px;
+    color: #666;
+}
+
 .main-image img {
     width: 100%;
     height: auto;

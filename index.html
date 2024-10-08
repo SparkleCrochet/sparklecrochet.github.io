@@ -76,7 +76,7 @@
         }
     }
 
-    function addItemToContainer(title, price, description, images, status) {
+       function addItemToContainer(title, price, description, images, status) {
         const itemDiv = document.createElement('div');
         itemDiv.className = "item";
         
@@ -102,6 +102,15 @@
             document.getElementById('sold-items').appendChild(itemDiv);
         }
     }
+
+    function loadItems() {
+        const items = JSON.parse(localStorage.getItem('items')) || [];
+        items.forEach(item => {
+            addItemToContainer(item.title, item.price, item.description, item.images, item.status);
+        });
+    }
+
+    window.onload = loadItems; // Load items when the page loads
 </script>
 </header>
 

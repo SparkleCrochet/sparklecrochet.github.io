@@ -43,3 +43,44 @@
     }
 
     window.onload = loadItems; // Load items when the page loads
+
+
+function addItem() {
+    const title = document.getElementById('itemTitle').value;
+    const price = document.getElementById('itemPrice').value;
+    const description = document.getElementById('itemDescription').value;
+    const status = document.getElementById('itemStatus').value;
+    const fileInput = document.getElementById('itemImage');
+
+    console.log('Adding item:', { title, price, description, status });
+
+    if (title && fileInput.files.length > 0 && price && description && status) {
+        const images = [];
+        let filesProcessed = 0;
+
+        Array.from(fileInput.files).forEach(file => {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                images.push(event.target.result);
+                filesProcessed++;
+
+                console.log('Processed image:', event.target.result);
+
+                if (filesProcessed === fileInput.files.length) {
+                    const newItem = { title, price, description, images, status };
+                    const items = JSON.parse(localStorage.getItem('items')) || [];
+                    items.push(newItem);
+                    localStorage.setItem('items', JSON.stringify(items));
+
+                    console.log('Items saved:', items);
+                    window.opener.addItemToContainer(title, price, description, images, status);
+                    alert("Item added successfully!");
+                    window.close(); // Close the add item window
+                }
+            };
+            reader.readAsDataURL(file);
+        });
+    } else {
+        alert("Please fill in all fields.");
+    }
+}

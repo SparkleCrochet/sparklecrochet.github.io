@@ -84,3 +84,7 @@ function addItem() {
         alert("Please fill in all fields.");
     }
 }
+
+
+localStorage.setItem('test', 'test');
+console.log(localStorage.getItem('test')); // Should log "test"

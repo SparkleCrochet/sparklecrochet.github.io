@@ -1,3 +1,36 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #F8F0E5; /* Light Peach */
+    color: #333;
+}
+
+header {
+    background-color: #102C57; /* Dark Navy */
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+nav {
+    margin: 20px 0;
+}
+
+nav a {
+    margin: 0 15px;
+    color: white;
+    text-decoration: none;
+}
+
+section {
+    padding: 20px;
+    margin: 20px;
+    background-color: #EADBC8; /* Peach */
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
 .items-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -27,80 +60,48 @@
 
 .price {
     font-size: 1.5em;
-    color: #333;
+    color: #A3102C; /* Tan */
     margin-top: 10px;
 }
- body {
-     font-family: Arial, sans-serif;
-     margin: 0;
-     padding: 0;
-     background-color: #F8F0E5;
-     color: #333;
- }
-header {
-    background-color: #102C57;
-    color: white;
-    padding: 20px 0;
-    text-align: center;
-        }
-nav {
-            margin: 20px 0;
-        } 
-nav a {
-            margin: 0 15px;
-            color: white;
-            text-decoration: none;
-        }
- section {
-            padding: 20px;
-            margin: 20px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-.item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-}
-.item img {
-            width: 100px; /* Adjust as needed */
-            height: auto;
-            margin-right: 20px;
-        }
+
 footer {
-            text-align: center;
-            padding: 20px 0;
-            background-color: #102C57;
-            color: white;
-        }
+    text-align: center;
+    padding: 20px 0;
+    background-color: #102C57; /* Dark Navy */
+    color: white;
+}
 
 #admin-area {
-            margin: 20px 0;
-            padding: 15px;
-            background-color: #f9f9f9;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-        }
-        .add-item-form input, .add-item-form select {
-            display: block;
-            margin: 10px 0;
-            padding: 10px;
-            width: 100%;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        .add-item-form button {
-            padding: 10px 15px;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .add-item-form button:hover {
-            background-color: #0056b3;
-        }
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.add-item-form input, 
+.add-item-form select {
+    display: block;
+    margin: 10px 0;
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.add-item-form button {
+    padding: 10px 15px;
+    background-color: #DAC0A3; /* Light Tan */
+    color: #102C57; /* Dark Navy */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-item-form button:hover {
+    background-color: #B8A28A; /* Slightly darker shade on hover */
+}
+
 /* Styles for the admin area */
 #admin-area {
     color: black; /* Set text color to black */
@@ -114,4 +115,3 @@ footer {
 #admin-area input::placeholder {
     color: gray; /* Optional: Set placeholder text color */
 }
-

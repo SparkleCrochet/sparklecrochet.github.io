@@ -5,28 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crochet Dragon</title>
     <style>
-        header {
-            background-color: #102C57; /* Choose a background color */
-            color: white; /* Set text color */
-            padding: 20px 0; /* Add some padding */
-            position: fixed; /* Fix the header at the top */
-            top: 0; /* Align to the top of the viewport */
-            left: 0; /* Align to the left */
-             right: 0; /* Align to the right */
-            z-index: 1000; /* Ensure it's above other content */
-        }
         body {
-            padding-top: 80px; /* Add top padding to body to prevent content from being hidden behind the header */
             font-family: Arial, sans-serif;
             text-align: center;
             margin: 20px;
-            background-color: #F8F0E5;
+            padding-top: 80px; /* Prevent content from being hidden by the fixed header */
+        }
+        header {
+            background-color: #102C57;
+            color: white;
+            padding: 20px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000; /* Make sure it stays above other elements */
         }
         .slider {
             position: relative;
             max-width: 600px;
             margin: auto;
-            margin-top: 20px; /* Add margin to create space below the header */
         }
         .main-image {
             position: relative;
@@ -49,7 +47,7 @@
             margin-top: 10px;
         }
         .thumbnails img {
-            width: 80px; /* Thumbnail size */
+            width: 80px;
             margin: 0 5px;
             cursor: pointer;
             border: 2px solid transparent;
@@ -64,79 +62,72 @@
             margin-top: 10px;
         }
     </style>
-    <link rel="stylesheet" href="gc.css"> <!-- Link to your CSS file -->
 </head>
-<body> 
+<body>
     <header>
-        <h1>Sparkle Crochet</h1>
-    <p>Crochet Dragon.</p>
-    <nav>
-        <a href="#available">Available</a>
-        <a href="#sold">Sold</a>
-        <a href="#custom">Custom</a>
-        <a href="#contact">Contact</a>
-        <button onclick="goBack()">Back to Main Page</button>
-    </nav>
+        <h1>Crochet Dragon</h1>
     </header>
-<div class="slider">
-    <div class="main-image">
-        <img id="current" src="d1.jpg" alt="Main Image">
-        <div class="arrows">
-            <span class="arrow left" onclick="prevImage()">&#10094;</span>
-            <span class="arrow right" onclick="nextImage()">&#10095;</span>
-        </div>
-    <div class="thumbnails">
-        <img src="d1.jpg" alt="Thumbnail" onclick="changeImage('d1.jpg')">
-        <img src="d2.jpg" alt="Thumbnail" onclick="changeImage('d2.jpg')">
-        <img src="d3.jpg" alt="Thumbnail" onclick="changeImage('d3.jpg')">
-        <img src="d4.jpg" alt="Thumbnail" onclick="changeImage('d4.jpg')">
-    </div>
-    </div>
+    <button onclick="goBack()">Back to Main Page</button> <!-- Back Button -->
+    <div class="slider">
+        <div class="main-image">
+            <img id="current" src="d1.jpg" alt="Main Image">
+            <div class="arrows">
+                <span class="arrow left" onclick="prevImage()">&#10094;</span>
+                <span class="arrow right" onclick="nextImage()">&#10095;</span>
+            </div>
+            <div class="thumbnails">
+                <img src="d1.jpg" alt="Thumbnail" onclick="changeImage('d1.jpg')">
+                <img src="d2.jpg" alt="Thumbnail" onclick="changeImage('d2.jpg')">
+                <img src="d3.jpg" alt="Thumbnail" onclick="changeImage('d3.jpg')">
+                <img src="d4.jpg" alt="Thumbnail" onclick="changeImage('d4.jpg')">
+            </div>
             <div class="info">
-        <div class="price" id="price">Sold</div>
-        <div class="description" id="description">This is a great crochet item!</div>
-     <button onclick="window.location.href='mailto:sparklecrochet8@gmail.com';">Contact for Purchase</button>
-</div>
+                <div class="price" id="price">Sold</div>
+                <div class="description" id="description">This is a great crochet item!</div>
+            </div>
+            <button onclick="window.location.href='mailto:sparklecrochet8@gmail.com';">Contact for Purchase</button>
+        </div>
+    </div>
+    
+    <script>
+        const price = "Sold";
+        const description = "Cute crochet dragon. Custom Order";
+        const images = [
+            'd1.jpg',
+            'd2.jpg',
+            'd3.jpg',
+            'd4.jpg'
+        ];
 
-<script>
-const price = "Sold";
-const description = "Cute crochet dragon. Custom Order";
-const images = [
-    'd1.jpg',
-    'd2.jpg',
-    'd3.jpg',
-    'd4.jpg'
-];
+        let currentIndex = 0;
 
-let currentIndex = 0;
+        function updateImage() {
+            document.getElementById('current').src = images[currentIndex];
+            document.getElementById('price').innerText = price;
+            document.getElementById('description').innerText = description;
+        }
 
-function updateImage() {
-    document.getElementById('current').src = images[currentIndex];
-    document.getElementById('price').innerText = price;
-    document.getElementById('description').innerText = description;
-}
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            updateImage();
+        }
 
-function nextImage() {
-    currentIndex = (currentIndex + 1) % images.length;
-    updateImage();
-}
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            updateImage();
+        }
 
-function prevImage() {
-    currentIndex = (currentIndex - 1 + images.length) % images.length;
-    updateImage();
-}
+        function changeImage(src) {
+            currentIndex = images.indexOf(src);
+            updateImage();
+        }
 
-function changeImage(src) {
-    currentIndex = images.indexOf(src);
-    updateImage();
-}
+        function goBack() {
+            window.location.href = 'index.html'; // Change to your main page URL
+            // or use window.history.back(); to go back to the previous page
+        }
 
-// Open contact page or function
-document.getElementById('contact-btn').onclick = function() {
-    window.open('mailto:your-email@example.com');
-};
-
-// Initialize the first image on load
-window.onload = updateImage;</script> <!-- Link to your JavaScript file -->
+        window.onload = updateImage;
+    </script>
 </body>
 </html>

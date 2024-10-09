@@ -25,6 +25,7 @@
             position: relative;
             max-width: 600px;
             margin: auto;
+            margin-top: 50px; /* Space below the header */
         }
         .main-image {
             position: relative;
@@ -61,6 +62,39 @@
         button {
             margin-top: 10px;
         }
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.9); /* Black with opacity */
+        }
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%; /* Width of the image */
+            max-width: 700px; /* Max width */
+        }
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -71,7 +105,7 @@
     <button onclick="goBack()">Back to Main Page</button> <!-- Back Button -->
     <div class="slider">
         <div class="main-image">
-            <img id="current" src="d1.jpg" alt="Main Image">
+            <img id="current" src="d1.jpg" alt="Main Image" onclick="openModal(this.src)">
             <div class="arrows">
                 <span class="arrow left" onclick="prevImage()">&#10094;</span>
                 <span class="arrow right" onclick="nextImage()">&#10095;</span>
@@ -89,7 +123,13 @@
             <button onclick="window.location.href='mailto:sparklecrochet8@gmail.com';">Contact for Purchase</button>
         </div>
     </div>
-    
+
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+        <div id="caption"></div>
+    </div>
+
     <script>
         const price = "Sold";
         const description = "Cute crochet dragon. Custom Order";
@@ -125,7 +165,21 @@
 
         function goBack() {
             window.location.href = 'index.html'; // Change to your main page URL
-            // or use window.history.back(); to go back to the previous page
+        }
+
+        function openModal(src) {
+            const modal = document.getElementById("imageModal");
+            const modalImage = document.getElementById("modalImage");
+            const caption = document.getElementById("caption");
+            
+            modal.style.display = "block";
+            modalImage.src = src;
+            caption.innerHTML = ''; // You can add a caption if needed
+        }
+
+        function closeModal() {
+            const modal = document.getElementById("imageModal");
+            modal.style.display = "none";
         }
 
         window.onload = updateImage;

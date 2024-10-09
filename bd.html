@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grey Turtle</title>
+    <link rel="stylesheet" href="gc.css"> <!-- Link to your CSS file -->
+</head>
+<body> 
+    <header>Crochet Dragon</header>
+<div class="slider">
+    <div class="main-image">
+        <img id="current" src="d1.jpg" alt="Main Image">
+        <div class="arrows">
+            <span class="arrow left" onclick="prevImage()">&#10094;</span>
+            <span class="arrow right" onclick="nextImage()">&#10095;</span>
+        </div>
+    <div class="thumbnails">
+        <img src="d1.jpg" alt="Thumbnail" onclick="changeImage('d1.jpg')">
+        <img src="d2.jpg" alt="Thumbnail" onclick="changeImage('d2.jpg')">
+        <img src="d3.jpg" alt="Thumbnail" onclick="changeImage('d3.jpg')">
+        <img src="d4.jpg" alt="Thumbnail" onclick="changeImage('d4.jpg')">
+    </div>
+            <div class="info">
+        <div class="price" id="price">Sold</div>
+        <div class="description" id="description">This is a great crochet item!</div>
+    </div>
+     <button onclick="window.location.href='mailto:sparklecrochet8@gmail.com';">Contact for Purchase</button>
+</div>
+
+<script src="script1.js"></script> <!-- Link to your JavaScript file -->
+</body>
+</html>

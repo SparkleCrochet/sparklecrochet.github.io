@@ -75,6 +75,45 @@
      <button onclick="window.location.href='mailto:sparklecrochet8@gmail.com';">Contact for Purchase</button>
 </div>
 
-<script src="script1.js"></script> <!-- Link to your JavaScript file -->
+<script>
+const price = "Sold";
+const description = "Cute crochet dragon. Custom Order";
+const images = [
+    'd1.jpg',
+    'd2.jpg',
+    'd3.jpg',
+    'd4.jpg'
+];
+
+let currentIndex = 0;
+
+function updateImage() {
+    document.getElementById('current').src = images[currentIndex];
+    document.getElementById('price').innerText = price;
+    document.getElementById('description').innerText = description;
+}
+
+function nextImage() {
+    currentIndex = (currentIndex + 1) % images.length;
+    updateImage();
+}
+
+function prevImage() {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    updateImage();
+}
+
+function changeImage(src) {
+    currentIndex = images.indexOf(src);
+    updateImage();
+}
+
+// Open contact page or function
+document.getElementById('contact-btn').onclick = function() {
+    window.open('mailto:your-email@example.com');
+};
+
+// Initialize the first image on load
+window.onload = updateImage;</script> <!-- Link to your JavaScript file -->
 </body>
 </html>

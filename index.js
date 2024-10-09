@@ -1,40 +1,45 @@
-function addItem() {
-    const title = document.getElementById('itemTitle').value;
-    const price = document.getElementById('itemPrice').value;
-    const description = document.getElementById('itemDescription').value;
-    const fileInput = document.getElementById('itemImage');
+ const correctPassword = "SparkleCrochet"; // Set your password here
 
-    // Check if all fields are filled
-    if (title && fileInput.files.length > 0 && price && description) {
-        const images = []; // Array to hold image URLs
-
-        // Process each selected file
-        Array.from(fileInput.files).forEach(file => {
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                images.push(event.target.result);
-                // If all images are loaded, create the item
-                if (images.length === fileInput.files.length) {
-                    // Create a link to the new item page
-                    const itemLink = document.createElement('a');
-                    itemLink.href = `item.html?title=${encodeURIComponent(title)}&price=${encodeURIComponent(price)}&description=${encodeURIComponent(description)}&images=${encodeURIComponent(JSON.stringify(images))}`;
-                    itemLink.target = "_blank"; // Open in a new tab
-                    itemLink.innerText = title; // Display the title
-                    itemLink.style.display = 'block'; // Make it a block element for better appearance
-
-                    // Append link to the items container
-                    document.getElementById('items-container').appendChild(itemLink);
-
-                    // Clear input fields
-                    document.getElementById('itemTitle').value = '';
-                    document.getElementById('itemImage').value = '';
-                    document.getElementById('itemPrice').value = '';
-                    document.getElementById('itemDescription').value = '';
-                }
-            };
-            reader.readAsDataURL(file); // Read the file
-        });
-    } else {
-        alert("Please fill in all fields."); // Alert if fields are empty
+    function openAddItemWindow() {
+        const password = prompt("Enter password:");
+        if (password === correctPassword) {
+            window.open('add-item.html', '_blank', 'width=600,height=400');
+        } else {
+            alert("Incorrect password!");
+        }
     }
-}
+
+    function addItemToContainer(title, price, description, images, status) {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = "item";
+
+        const itemLink = document.createElement('a');
+        itemLink.href = `item.html?title=${encodeURIComponent(title)}&price=${encodeURIComponent(price)}&description=${encodeURIComponent(description)}&images=${encodeURIComponent(JSON.stringify(images))}`;
+        itemLink.target = "_blank"; // Open in new tab
+        itemLink.innerText = title;
+
+        const itemPrice = document.createElement('div');
+        itemPrice.innerText = `Price: ${price}`;
+
+        const itemImage = document.createElement('img');
+        itemImage.src = images[0]; // Use the first image as a thumbnail
+
+        itemDiv.appendChild(itemLink);
+        itemDiv.appendChild(itemImage);
+        itemDiv.appendChild(itemPrice);
+
+        if (status === "available") {
+            document.getElementById('available-items').appendChild(itemDiv);
+        } else {
+            document.getElementById('sold-items').appendChild(itemDiv);
+        }
+    }
+
+    function loadItems() {
+        const items = JSON.parse(localStorage.getItem('items')) || [];
+        items.forEach(item => {
+            addItemToContainer(item.title, item.price, item.description, item.images, item.status);
+        });
+    }
+
+    window.onload = loadItems; // Load items when the page loads

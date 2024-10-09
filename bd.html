@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crochet Dragon</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+            padding-top: 80px; /* Prevent content from being hidden by the fixed header */
+            background-color: #F8F0E5; /* Light Peach */
+        }
+        header {
+            background-color: #102C57; /* Dark Navy */
+            color: white;
+            padding: 20px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000; /* Make sure it stays above other elements */
+        }
+        .back-button {
+            position: absolute;
+            top: 10px; /* Adjust as needed */
+            left: 20px; /* Adjust as needed */
+            background-color: #DAC0A3; /* Light Tan */
+            color: #102C57; /* Dark Navy */
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px; /* Rounded corners for buttons */
+            cursor: pointer;
+        }
+        .slider {
+            position: relative;
+            max-width: 600px;
+            margin: auto;
+            margin-top: 50px; /* Space below the header */
+            background-color: #EADBC8; /* Peach */
+            border-radius: 8px; /* Rounded corners */
+            padding: 10px; /* Space inside the slider */
+        }
+        .main-image img {
+            width: 100%; /* Make the main image responsive */
+            height: auto; /* Keep aspect ratio */
+            border-radius: 8px; /* Rounded corners */
+        }
+        .arrows {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+        .arrow {
+            cursor: pointer;
+            font-size: 2em;
+            color: #102C57; /* Dark Navy */
+        }
+        .thumbnails {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+            flex-wrap: wrap; /* Allow thumbnails to wrap */
+        }
+        .thumbnails img {
+            width: 80px; /* Thumbnail size */
+            height: auto; /* Keep aspect ratio */
+            margin: 0 5px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            border-radius: 4px; /* Slightly rounded corners */
+        }
+        .thumbnails img:hover {
+            border: 2px solid #007BFF; /* Highlight on hover */
+        }
+        .info {
+            margin-top: 10px;
+            color: #A3102C57; /* Tan */
+        }
+        button {
+            margin-top: 10px;
+            background-color: #DAC0A3; /* Light Tan */
+            color: #102C57; /* Dark Navy */
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px; /* Rounded corners for buttons */
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #B8A28A; /* Slightly darker shade on hover */
+        }
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.9); /* Black with opacity */
+        }
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%; /* Max width of modal image */
+            max-height: 90%; /* Max height of modal image */
+        }
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Sparkle Crochet</h1>
+        <p>Crochet Dragon</p>
+        <button class="back-button" onclick="goBack()">Back to Main Page</button> <!-- Back Button -->
+    </header>
+    <div class="slider">
+        <div class="main-image">
+            <img id="current" src="d1.jpg" alt="Main Image" onclick="openModal(this.src)">
+            <div class="arrows">
+                <span class="arrow left" onclick="prevImage()">&#10094;</span>
+                <span class="arrow right" onclick="nextImage()">&#10095;</span>
+            </div>
+            <div class="thumbnails">
+                <img src="d1.jpg" alt="Thumbnail" onclick="changeImage('d1.jpg')">
+                <img src="d2.jpg" alt="Thumbnail" onclick="changeImage('d2.jpg')">
+                <img src="d3.jpg" alt="Thumbnail" onclick="changeImage('d3.jpg')">
+                <img src="d4.jpg" alt="Thumbnail" onclick="changeImage('d4.jpg')">
+            </div>
+            <div class="info">
+                <div class="price" id="price">Sold</div>
+                <div class="description" id="description">This is a great crochet item!</div>
+            </div>
+            <button onclick="window.location.href='mailto:sparklecrochet8@gmail.com';">Contact for Purchase</button>
+        </div>
+    </div>
+
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+        <div id="caption"></div>
+    </div>
+
+    <script>
+        const price = "Sold";
+        const description = "Cute crochet dragon. Custom Order";
+        const images = [
+            'd1.jpg',
+            'd2.jpg',
+            'd3.jpg',
+            'd4.jpg'
+        ];
+
+        let currentIndex = 0;
+
+        function updateImage() {
+            document.getElementById('current').src = images[currentIndex];
+            document.getElementById('price').innerText = price;
+            document.getElementById('description').innerText = description;
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            updateImage();
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            updateImage();
+        }
+
+        function changeImage(src) {
+            currentIndex = images.indexOf(src);
+            updateImage();
+        }
+
+        function goBack() {
+            window.location.href = 'index.html'; // Change to your main page URL
+        }
+
+        function openModal(src) {
+            const modal = document.getElementById("imageModal");
+            const modalImage = document.getElementById("modalImage");
+            const caption = document.getElementById("caption");
+            
+            modal.style.display = "block";
+            modalImage.src = src;
+            caption.innerHTML = ''; // You can add a caption if needed
+        }
+
+        function closeModal() {
+            const modal = document.getElementById("imageModal");
+            modal.style.display = "none";
+        }
+
+        window.onload = updateImage;
+    </script>
+</body>
+</html>

@@ -125,6 +125,27 @@
             text-decoration: none;
             cursor: pointer;
         }
+        @media (max-width: 600px) { /* For small devices like phones */
+    .back-button {
+        padding: 8px 16px; /* Smaller padding */
+        font-size: 0.9em; /* Slightly smaller font size */
+    }
+    }
+
+        @media (min-width: 601px) and (max-width: 1024px) { /* For tablets */
+   .back-button {
+        padding: 10px 18px; /* Medium padding */
+        font-size: 1em; /* Base font size */
+    }
+    }
+
+        @media (min-width: 1025px) { /* For larger devices like desktops */
+    .back-button {
+        padding: 12px 24px; /* Larger padding */
+        font-size: 1.2em; /* Larger font size */
+    }
+    }
+
     </style>
 </head>
 <body>

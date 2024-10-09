@@ -30,8 +30,6 @@
 <button onclick="addItem()">Add Item</button>
 
 <script>
-    const correctPassword = "SparkleCrochet"; // Set your password here
-
     function addItem() {
         const title = document.getElementById('itemTitle').value;
         const price = document.getElementById('itemPrice').value;
@@ -56,7 +54,13 @@
                         items.push(newItem);
                         localStorage.setItem('items', JSON.stringify(items));
 
-                        window.opener.addItemToContainer(title, price, description, images, status);
+                        // Check if window.opener exists
+                        if (window.opener && typeof window.opener.addItemToContainer === "function") {
+                            window.opener.addItemToContainer(title, price, description, images, status);
+                        } else {
+                            console.error("Parent window not found or function not available.");
+                        }
+
                         alert("Item added successfully!");
                         window.close(); // Close the add item window
                     }

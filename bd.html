@@ -15,23 +15,29 @@
         header {
             background-color: #102C57; /* Dark Navy */
             color: white;
+            display: flex; /* Use flexbox */
+            flex-direction: column; /* Stack items vertically */
+            align-items: center; /* Center items */
             padding: 20px 0;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            position: relative; /* Ensure relative positioning */
             z-index: 1000; /* Make sure it stays above other elements */
         }
         .back-button {
-            position: absolute;
-            top: 10px; /* Adjust as needed */
-            left: 20px; /* Adjust as needed */
+            margin: 10px; /* Add margin to prevent overlap */
             background-color: #DAC0A3; /* Light Tan */
             color: #102C57; /* Dark Navy */
             border: none;
-            padding: 10px 20px;
-            border-radius: 5px; /* Rounded corners for buttons */
+            padding: 10px 20px; /* Base padding */
+            border-radius: 5px; /* Rounded corners */
             cursor: pointer;
+            font-size: 1em; /* Base font size */
+            transition: background-color 0.3s; /* Smooth hover effect */
+            position: absolute; /* Position the button */
+            top: 10px; /* Position from top */
+            left: 20px; /* Position from left */
+        }
+        .back-button:hover {
+            background-color: #B8A28A; /* Slightly darker shade on hover */
         }
         .slider {
             position: relative;
@@ -87,7 +93,7 @@
             color: #102C57; /* Dark Navy */
             border: none;
             padding: 10px 20px;
-            border-radius: 5px; /* Rounded corners for buttons */
+            border-radius: 5px; /* Rounded corners */
             cursor: pointer;
         }
         button:hover {
@@ -125,27 +131,30 @@
             text-decoration: none;
             cursor: pointer;
         }
-        @media (max-width: 600px) { /* For small devices like phones */
-    .back-button {
-        padding: 8px 16px; /* Smaller padding */
-        font-size: 0.9em; /* Slightly smaller font size */
-    }
-    }
 
-        @media (min-width: 601px) and (max-width: 1024px) { /* For tablets */
-   .back-button {
-        padding: 10px 18px; /* Medium padding */
-        font-size: 1em; /* Base font size */
-    }
-    }
+        @media (max-width: 600px) {
+            .back-button {
+                padding: 8px 16px; /* Smaller padding */
+                font-size: 0.9em; /* Slightly smaller font size */
+                margin: 5px; /* Reduce margin for smaller screens */
+                top: 5px; /* Adjust position for smaller screens */
+                left: 5px; /* Adjust position for smaller screens */
+            }
+        }
 
-        @media (min-width: 1025px) { /* For larger devices like desktops */
-    .back-button {
-        padding: 12px 24px; /* Larger padding */
-        font-size: 1.2em; /* Larger font size */
-    }
-    }
+        @media (min-width: 601px) and (max-width: 1024px) {
+            .back-button {
+                padding: 10px 18px; /* Medium padding */
+                font-size: 1em; /* Base font size */
+            }
+        }
 
+        @media (min-width: 1025px) {
+            .back-button {
+                padding: 12px 24px; /* Larger padding */
+                font-size: 1.2em; /* Larger font size */
+            }
+        }
     </style>
 </head>
 <body>

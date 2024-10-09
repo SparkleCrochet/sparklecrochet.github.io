@@ -56,7 +56,7 @@
 
 <div class="slider">
     <div class="main-image">
-        <img id="current" src="" alt="Main Image">
+        <img id="current" src="" alt="Main Image" style="width: 100%;">
         <div class="arrows">
             <span class="arrow left" onclick="prevImage()">&#10094;</span>
             <span class="arrow right" onclick="nextImage()">&#10095;</span>
@@ -72,42 +72,38 @@
 
 <script>
     const params = new URLSearchParams(window.location.search);
-    const title = params.get('title') || 'Item Details'; // Default title
-    const price = params.get('price') || 'N/A'; // Default price
-    const description = params.get('description') || 'No description available.'; // Default description
-    const images = JSON.parse(decodeURIComponent(params.get('images'))) || []; // Fallback to empty array
+    const title = params.get('title');
+    const price = params.get('price');
+    const description = params.get('description');
+    const images = JSON.parse(decodeURIComponent(params.get('images')));
 
     document.title = title; // Set the page title
     document.getElementById('price').innerText = `Price: ${price}`;
     document.getElementById('description').innerText = description;
 
-    if (images.length > 0) {
-        let currentIndex = 0;
-        document.getElementById('current').src = images[currentIndex];
+    let currentIndex = 0;
+    document.getElementById('current').src = images[currentIndex];
 
-        images.forEach((img, index) => {
-            const thumb = document.createElement('img');
-            thumb.src = img;
-            thumb.alt = `Thumbnail for ${title}`;
-            thumb.onclick = () => changeImage(img);
-            document.getElementById('thumbnail-container').appendChild(thumb);
-        });
+    images.forEach((img, index) => {
+        const thumb = document.createElement('img');
+        thumb.src = img;
+        thumb.alt = `Thumbnail ${index + 1}`;
+        thumb.onclick = () => changeImage(img);
+        document.getElementById('thumbnail-container').appendChild(thumb);
+    });
 
-        function changeImage(src) {
-            document.getElementById('current').src = src;
-        }
+    function changeImage(src) {
+        document.getElementById('current').src = src;
+    }
 
-        function prevImage() {
-            currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
-            changeImage(images[currentIndex]);
-        }
+    function prevImage() {
+        currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
+        changeImage(images[currentIndex]);
+    }
 
-        function nextImage() {
-            currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
-            changeImage(images[currentIndex]);
-        }
-    } else {
-        document.getElementById('current').alt = "No images available";
+    function nextImage() {
+        currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
+        changeImage(images[currentIndex]);
     }
 </script>
 

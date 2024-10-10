@@ -39,6 +39,9 @@ section {
 }
 
 .item {
+    display: flex; /* Use flexbox */
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center children horizontally */
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -46,6 +49,11 @@ section {
     text-align: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s;
+}
+
+.item h2 {
+    font-size: 1.5em; /* Adjust title size as needed */
+    margin: 0; /* Reset margin */
 }
 
 .item img {

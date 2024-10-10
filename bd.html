@@ -4,31 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crochet Dragon</title>
-    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Lora&display=swap" rel="stylesheet">
     <style>
         header {
-        background-color: #102C57;
-        color: white;
-        padding: 10px 0;
-        text-align: center;
-        position: fixed; /* Fix the header to the top */
-        top: 0; /* Position it at the top */
-        left: 0; /* Align it to the left */
-        right: 0; /* Align it to the right */
-        z-index: 1000; /* Ensure it stays above other content */
+            background-color: #102C57;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            position: fixed; /* Fix the header to the top */
+            top: 0; /* Position it at the top */
+            left: 0; /* Align it to the left */
+            right: 0; /* Align it to the right */
+            z-index: 1000; /* Ensure it stays above other content */
         }
 
-      body {
-           font-family: Arial, sans-serif;
-           margin: 0;
-           padding: 80px 0 0; /* Adjust padding-top based on your header height */
-           background-color: #F8F0E5;
-           color: #333;
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 80px 0 0; /* Adjust padding-top based on your header height */
+            background-color: #F8F0E5;
+            color: #333;
         }
 
         header h1 {
             font-family: 'Permanent Marker', cursive; /* Apply the Permanent Marker font */
-            font-size: 3em; /* Adjust size as needed */
+            font-size: 2.5em; /* Adjust size for a smaller header */
             margin: 0; /* Reset margin */
         }   
 
@@ -46,9 +46,11 @@
             top: 10px; /* Position from top */
             left: 20px; /* Position from left */
         }
+
         .back-button:hover {
             background-color: #B8A28A; /* Slightly darker shade on hover */
         }
+
         .slider {
             position: relative;
             max-width: 600px;
@@ -58,11 +60,13 @@
             border-radius: 8px; /* Rounded corners */
             padding: 10px; /* Space inside the slider */
         }
+
         .main-image img {
             width: 100%; /* Make the main image responsive */
             height: auto; /* Keep aspect ratio */
             border-radius: 8px; /* Rounded corners */
         }
+
         .arrows {
             position: absolute;
             top: 50%;
@@ -71,17 +75,20 @@
             justify-content: space-between;
             transform: translateY(-50%);
         }
+
         .arrow {
             cursor: pointer;
             font-size: 2em;
             color: #102C57; /* Dark Navy */
         }
+
         .thumbnails {
             display: flex;
             justify-content: center;
             margin-top: 10px;
             flex-wrap: wrap; /* Allow thumbnails to wrap */
         }
+
         .thumbnails img {
             width: 80px; /* Thumbnail size */
             height: auto; /* Keep aspect ratio */
@@ -90,13 +97,17 @@
             border: 2px solid transparent;
             border-radius: 4px; /* Slightly rounded corners */
         }
+
         .thumbnails img:hover {
             border: 2px solid #007BFF; /* Highlight on hover */
         }
+
         .info {
             margin-top: 10px;
+            font-family: 'Lora', serif; /* Apply Lora font */
             color: #A3102C57; /* Tan */
         }
+
         button {
             margin-top: 10px;
             background-color: #DAC0A3; /* Light Tan */
@@ -106,9 +117,11 @@
             border-radius: 5px; /* Rounded corners */
             cursor: pointer;
         }
+
         button:hover {
             background-color: #B8A28A; /* Slightly darker shade on hover */
         }
+
         .modal {
             display: none; /* Hidden by default */
             position: fixed;
@@ -120,12 +133,14 @@
             overflow: auto; /* Enable scroll if needed */
             background-color: rgba(0,0,0,0.9); /* Black with opacity */
         }
+
         .modal-content {
             margin: auto;
             display: block;
             max-width: 90%; /* Max width of modal image */
             max-height: 90%; /* Max height of modal image */
         }
+
         .close {
             position: absolute;
             top: 15px;
@@ -135,6 +150,7 @@
             font-weight: bold;
             transition: 0.3s;
         }
+
         .close:hover,
         .close:focus {
             color: #bbb;

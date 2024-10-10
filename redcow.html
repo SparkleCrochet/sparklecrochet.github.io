@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crochet Dragon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Lora&display=swap" rel="stylesheet">
+    <style>
+        header {
+        background-color: #102C57;
+        color: white;
+        padding: 10px 0;
+        margin-top: 0;
+        margin-left: 0px'
+        margin-right: 0px;
+        margin-bottom: 20px;
+        text-align: center;
+        position: fixed; /* Fix the header to the top */
+        top: 0; /* Position it at the top */
+        left: 0; /* Align it to the left */
+        right: 0; /* Align it to the right */
+        z-index: 1000; /* Ensure it stays above other content */
+        display: flex; /* Use flexbox */
+        flex-direction: column; /* Align items vertically */
+        align-items: center; /* Center items horizontally */
+    }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 60px;
+            padding: 80px 0 0; /* Adjust padding-top based on your header height */
+            background-color: #F8F0E5;
+            color: #333;
+        }
+
+        header h1 {
+            font-family: 'Permanent Marker', cursive; /* Apply the Permanent Marker font */
+            font-size: 2.5em; /* Adjust size for a smaller header */
+            margin: 0; /* Reset margin */
+        }   
+
+        .back-button {
+            margin-top: 10px; /* Adjust margin for spacing */
+            background-color: #DAC0A3; /* Light Tan */
+            color: #102C57; /* Dark Navy */
+            border: none;
+            padding: 10px 20px; /* Base padding */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer;
+            font-size: 1em; /* Base font size */
+            transition: background-color 0.3s; /* Smooth hover effect */
+        }
+        .back-button:hover {
+            background-color: #B8A28A; /* Slightly darker shade on hover */
+        }
+
+        .slider {
+            position: relative;
+            max-width: 600px;
+            margin: auto;
+            margin-top: 60px; /* Space below the header */
+            background-color: #EADBC8; /* Peach */
+            border-radius: 8px; /* Rounded corners */
+            padding: 10px; /* Space inside the slider */
+        }
+
+        .main-image img {
+            width: 100%; /* Make the main image responsive */
+            height: auto; /* Keep aspect ratio */
+            border-radius: 8px; /* Rounded corners */
+        }
+
+        .arrows {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        .arrow {
+            cursor: pointer;
+            font-size: 2em;
+            color: #102C57; /* Dark Navy */
+        }
+
+        .thumbnails {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+            flex-wrap: wrap; /* Allow thumbnails to wrap */
+        }
+
+        .thumbnails img {
+            width: 80px; /* Thumbnail size */
+            height: auto; /* Keep aspect ratio */
+            margin: 0 5px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            border-radius: 4px; /* Slightly rounded corners */
+        }
+
+        .thumbnails img:hover {
+            border: 2px solid #007BFF; /* Highlight on hover */
+        }
+
+        .info {
+            margin-top: 10px;
+            font-family: 'Lora', serif; /* Apply Lora font */
+            color: #A3102C57; /* Tan */
+        }
+
+        button {
+            margin-top: 10px;
+            background-color: #DAC0A3; /* Light Tan */
+            color: #102C57; /* Dark Navy */
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #B8A28A; /* Slightly darker shade on hover */
+        }
+
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.9); /* Black with opacity */
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%; /* Max width of modal image */
+            max-height: 90%; /* Max height of modal image */
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        @media (max-width: 600px) {
+            .back-button {
+                padding: 8px 16px; /* Smaller padding */
+                font-size: 0.9em; /* Slightly smaller font size */
+                margin: 5px; /* Reduce margin for smaller screens */
+                top: 5px; /* Adjust position for smaller screens */
+                left: 5px; /* Adjust position for smaller screens */
+            }
+        }
+
+        @media (min-width: 601px) and (max-width: 1024px) {
+            .back-button {
+                padding: 10px 18px; /* Medium padding */
+                font-size: 1em; /* Base font size */
+            }
+        }
+
+        @media (min-width: 1025px) {
+            .back-button {
+                padding: 12px 24px; /* Larger padding */
+                font-size: 1.2em; /* Larger font size */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="item-header">
+        <h1>Sparkle Crochet</h1>
+        <p>Crochet Red Cow</p>
+        <button class="back-button" onclick="goBack()">Back to Main Page</button> <!-- Back Button -->
+    </header>
+    <div class="slider">
+        <div class="main-image">
+            <img id="current" src="rc1.jpg" alt="Main Image" onclick="openModal(this.src)">
+            <div class="arrows">
+                <span class="arrow left" onclick="prevImage()">&#10094;</span>
+                <span class="arrow right" onclick="nextImage()">&#10095;</span>
+            </div>
+            <div class="thumbnails">
+                <img src="rc1.jpg" alt="Thumbnail" onclick="changeImage('rc1.jpg')">
+                <img src="rc2.jpg" alt="Thumbnail" onclick="changeImage('rc2.jpg')">
+            </div>
+            <div class="info">
+                <div class="price" id="price">Sold</div>
+                <div class="description" id="description">Cute Crochet Red Cow!</div>
+            </div>
+            <button onclick="window.location.href='mailto:sparklecrochet8@gmail.com';">Contact for Purchase</button>
+        </div>
+    </div>
+
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+        <div id="caption"></div>
+    </div>
+
+    <script>
+        const price = "Sold";
+        const description = "Cute Crochet Red Cow!";
+        const images = [
+            'rc1.jpg',
+            'rc2.jpg',
+        ];
+
+        let currentIndex = 0;
+
+        function updateImage() {
+            document.getElementById('current').src = images[currentIndex];
+            document.getElementById('price').innerText = price;
+            document.getElementById('description').innerText = description;
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            updateImage();
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            updateImage();
+        }
+
+        function changeImage(src) {
+            currentIndex = images.indexOf(src);
+            updateImage();
+        }
+
+        function goBack() {
+            window.location.href = 'index.html'; // Change to your main page URL
+        }
+
+        function openModal(src) {
+            const modal = document.getElementById("imageModal");
+            const modalImage = document.getElementById("modalImage");
+            const caption = document.getElementById("caption");
+            
+            modal.style.display = "block";
+            modalImage.src = src;
+            caption.innerHTML = ''; // You can add a caption if needed
+        }
+
+        function closeModal() {
+            const modal = document.getElementById("imageModal");
+            modal.style.display = "none";
+        }
+
+        window.onload = updateImage;
+    </script>
+</body>
+</html>

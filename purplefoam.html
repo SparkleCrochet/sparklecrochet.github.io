@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="gc.css"> <!-- Link to your CSS file -->
+</head>
+<body> 
+    <header>Purple Foam Bouquet</header>
+<div class="slider">
+    <div class="main-image">
+        <img id="current" src="fp1.jpg" alt="Main Image">
+        <div class="arrows">
+            <span class="arrow left" onclick="prevImage()">&#10094;</span>
+            <span class="arrow right" onclick="nextImage()">&#10095;</span>
+        </div>
+    <div class="thumbnails">
+        <img src="fp1.jpg" alt="Thumbnail" onclick="changeImage('fp1.jpg')">
+        <img src="fp2.jpg" alt="Thumbnail" onclick="changeImage('fp2.jpg')">
+        <img src="fp3.jpg" alt="Thumbnail" onclick="changeImage('fp3.jpg')">
+    </div>
+            <div class="info">
+        <div class="price" id="price">$70.00</div>
+        <div class="description" id="description">Purple foam bouquet with 19 foam roses, 3 butterflies, and a wearable crown</div>
+    </div>
+     <button onclick="window.location.href='mailto:sparklecrochet8@gmail.com';">Contact for Purchase</button>
+</div>
+
+<script src="script1.js"></script> <!-- Link to your JavaScript file -->
+</body>
+</html>
